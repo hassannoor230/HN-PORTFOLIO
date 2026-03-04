@@ -90,7 +90,7 @@ export default function Works() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: '60px' }}
+          style={{ marginBottom: 'clamp(40px, 10vw, 60px)' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
             <span style={{ display: 'block', width: '48px', height: '1px', background: 'var(--gold)' }} />
@@ -98,10 +98,10 @@ export default function Works() {
               Selected Work
             </span>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'column', gap: 'clamp(16px, 5vw, 24px)' }}>
             <h2 style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(40px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 8vw, 72px)',
               fontWeight: 600,
               color: 'var(--text)',
               lineHeight: 1.05,
@@ -111,7 +111,7 @@ export default function Works() {
             </h2>
             <p style={{
               maxWidth: '320px',
-              fontSize: '14px',
+              fontSize: 'clamp(13px, 3vw, 14px)',
               color: 'var(--text-dim)',
               lineHeight: 1.8,
               fontFamily: 'var(--font-body)',
@@ -126,7 +126,7 @@ export default function Works() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '64px' }}
+          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: 'clamp(40px, 10vw, 64px)' }}
         >
           {filters.map(f => (
             <motion.button
@@ -138,12 +138,13 @@ export default function Works() {
                 background: active === f ? 'var(--gold)' : 'transparent',
                 border: `1px solid ${active === f ? 'var(--gold)' : 'rgba(201,168,76,0.2)'}`,
                 color: active === f ? 'var(--bg)' : 'var(--text-dim)',
-                padding: '8px 18px',
+                padding: '8px 16px',
                 fontFamily: 'var(--font-body)',
-                fontSize: '11px',
-                letterSpacing: '2px',
+                fontSize: '10px',
+                letterSpacing: '1.5px',
                 textTransform: 'uppercase',
                 transition: 'all 0.2s',
+                whiteSpace: 'nowrap',
               }}
             >
               {f}
@@ -166,11 +167,11 @@ export default function Works() {
                 onMouseLeave={() => setHovered(null)}
                 style={{
                   borderTop: '1px solid var(--border)',
-                  padding: '40px 0',
+                  padding: 'clamp(24px, 8vw, 40px) 0',
                   display: 'grid',
-                  gridTemplateColumns: '80px 1fr auto',
-                  gap: '32px',
-                  alignItems: 'center',
+                  gridTemplateColumns: 'clamp(50px, 12vw, 80px) 1fr auto',
+                  gap: 'clamp(16px, 5vw, 32px)',
+                  alignItems: 'flex-start',
                   cursor: 'pointer',
                   position: 'relative',
                   overflow: 'hidden',
@@ -249,8 +250,14 @@ export default function Works() {
                 </div>
 
                 {/* Right meta */}
-                <div style={{ textAlign: 'right', minWidth: '100px' }}>
-                  <div style={{ fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '12px', fontFamily: 'var(--font-body)' }}>
+                <div style={{ 
+                  textAlign: 'right', 
+                  minWidth: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                }}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '2px', fontFamily: 'var(--font-body)' }}>
                     {project.year}
                   </div>
                   <div style={{
@@ -270,7 +277,7 @@ export default function Works() {
                     style={{
                       fontSize: '20px',
                       color: project.color,
-                      marginTop: '16px',
+                      marginTop: '8px',
                     }}
                   >
                     →
@@ -285,13 +292,47 @@ export default function Works() {
       </div>
 
       <style>{`
-        @media (max-width: 600px) {
-          #works .container > div:last-child > div > div {
-            grid-template-columns: 50px 1fr !important;
-            gap: 16px !important;
+        @media (max-width: 768px) {
+          #works > div > div > div:nth-child(3) > div {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
-          #works .container > div:last-child > div > div > div:last-child {
+          
+          #works > div > div > div:nth-child(3) > div > div:nth-child(1) {
             display: none;
+          }
+          
+          #works > div > div > div:nth-child(3) > div > div:last-child {
+            grid-column: 1;
+            text-align: left;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            min-width: 100%;
+          }
+          
+          #works > div > div > div:nth-child(3) > div > div:last-child > div {
+            flex: 1;
+            min-width: 100px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          #works {
+            padding: 80px 0 !important;
+          }
+          
+          #works > div > div:first-child h2 {
+            font-size: clamp(28px, 6vw, 40px) !important;
+          }
+          
+          #works > div > div:nth-child(2) {
+            margin-bottom: 40px !important;
+            gap: 6px !important;
+          }
+          
+          #works > div > div:nth-child(3) > div {
+            padding: 20px 0 !important;
           }
         }
       `}</style>
