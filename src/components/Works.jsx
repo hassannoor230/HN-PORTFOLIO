@@ -1,341 +1,201 @@
-import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+
 
 const projects = [
   {
     id: 1,
-    title: 'Lumina — E-Commerce Platform',
-    category: 'Full Stack',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    year: '2024',
-    description: 'A luxury e-commerce platform with immersive product browsing, AI-powered recommendations, and seamless checkout flows.',
-    color: '#C9A84C',
-    number: '01',
+    title: "E-Commerce Website",
+    category: "Full Stack",
+    tags: ["React", "Node.js", "MongoDB"],
+    year: "2024",
+    description:
+      "Complete MERN stack e-commerce platform with product management, cart system and secure checkout.",
+    number: "01",
   },
   {
     id: 2,
-    title: 'Aura — Social Media App',
-    category: 'Mobile & Web',
-    tags: ['React Native', 'Firebase', 'Redux'],
-    year: '2024',
-    description: 'Next-generation social platform focused on authentic connection with algorithmic-free feeds and creative expression tools.',
-    color: '#8B9D77',
-    number: '02',
+    title: "Social Media Application",
+    category: "Full Stack",
+    tags: ["React", "Firebase", "Redux"],
+    year: "2024",
+    description:
+      "Modern social media platform with posts, likes, comments and real-time messaging.",
+    number: "02",
   },
   {
     id: 3,
-    title: 'Nexus — SaaS Dashboard',
-    category: 'Frontend',
-    tags: ['Next.js', 'TypeScript', 'Tailwind'],
-    year: '2023',
-    description: 'Enterprise analytics dashboard with real-time data visualization, collaborative workspaces, and intelligent reporting.',
-    color: '#7B8FA1',
-    number: '03',
+    title: "SaaS Admin Dashboard",
+    category: "Frontend",
+    tags: ["React", "Tailwind", "Charts"],
+    year: "2023",
+    description:
+      "Analytics dashboard with real-time charts, reports and user management.",
+    number: "03",
   },
   {
     id: 4,
-    title: 'Botanica — Brand Identity',
-    category: 'Design',
-    tags: ['Figma', 'Branding', 'UI/UX'],
-    year: '2023',
-    description: 'Complete brand identity and digital presence for a sustainable skincare brand, from logo to full design system.',
-    color: '#A18B77',
-    number: '04',
+    title: "UI/UX Brand Design",
+    category: "Design",
+    tags: ["Figma", "Branding", "UI/UX"],
+    year: "2023",
+    description:
+      "Complete brand identity and UI design system for modern startups.",
+    number: "04",
   },
   {
     id: 5,
-    title: 'Cipher — Crypto Wallet',
-    category: 'Web3',
-    tags: ['React', 'Web3.js', 'Solidity'],
-    year: '2023',
-    description: 'Secure and intuitive crypto wallet with multi-chain support, DeFi integrations, and hardware wallet compatibility.',
-    color: '#9B7FA1',
-    number: '05',
+    title: "Crypto Wallet App",
+    category: "Web3",
+    tags: ["React", "Web3.js", "Solidity"],
+    year: "2023",
+    description:
+      "Secure cryptocurrency wallet with multi-chain support and DeFi integrations.",
+    number: "05",
   },
   {
     id: 6,
-    title: 'Pulse — Health Tracker',
-    category: 'Mobile',
-    tags: ['Flutter', 'Dart', 'HealthKit'],
-    year: '2022',
-    description: 'Comprehensive wellness application integrating biometric tracking, personalized coaching, and medical-grade insights.',
-    color: '#B07A7A',
-    number: '06',
+    title: "Health Tracking App",
+    category: "Mobile",
+    tags: ["Flutter", "Dart"],
+    year: "2022",
+    description:
+      "Mobile health tracking application with personalized wellness insights.",
+    number: "06",
   },
-]
+];
 
-const filters = ['All', 'Full Stack', 'Frontend', 'Design', 'Mobile & Web', 'Web3', 'Mobile']
+const filters = ["All", "Full Stack", "Frontend", "Design", "Web3", "Mobile"];
 
 export default function Works() {
-  const [active, setActive] = useState('All')
-  const [hovered, setHovered] = useState(null)
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [active, setActive] = useState("All");
+  const [hovered, setHovered] = useState(null);
 
-  const filtered = active === 'All' ? projects : projects.filter(p => p.category === active)
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  const filtered =
+    active === "All"
+      ? projects
+      : projects.filter((p) => p.category === active);
 
   return (
-    <section id="works" style={{ padding: '140px 0', background: 'var(--bg)', position: 'relative' }}>
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0,
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-      }} />
-
+    <section id="works" style={{ padding: "120px 0", background: "var(--bg)" }}>
       <div className="container">
+
         {/* Header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 'clamp(40px, 10vw, 60px)' }}
+          transition={{ duration: 0.7 }}
+          style={{ marginBottom: "60px" }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-            <span style={{ display: 'block', width: '48px', height: '1px', background: 'var(--gold)' }} />
-            <span style={{ fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)' }}>
-              Selected Work
-            </span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'column', gap: 'clamp(16px, 5vw, 24px)' }}>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(32px, 8vw, 72px)',
-              fontWeight: 600,
-              color: 'var(--text)',
-              lineHeight: 1.05,
-              letterSpacing: '-1px',
-            }}>
-              Featured Projects
-            </h2>
-            <p style={{
-              maxWidth: '320px',
-              fontSize: 'clamp(13px, 3vw, 14px)',
-              color: 'var(--text-dim)',
-              lineHeight: 1.8,
-              fontFamily: 'var(--font-body)',
-            }}>
-              A curated selection of projects that showcase my range, attention to detail, and commitment to excellence.
-            </p>
-          </div>
+          <h2 style={{ fontSize: "48px", fontWeight: "600", marginBottom: "10px" }}>
+            Featured Projects
+          </h2>
+
+          <p style={{ color: "var(--text-dim)", maxWidth: "500px" }}>
+            A selection of my best projects demonstrating full stack development and modern UI design.
+          </p>
         </motion.div>
 
-        {/* Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: 'clamp(40px, 10vw, 64px)' }}
-        >
-          {filters.map(f => (
-            <motion.button
+        {/* Filters */}
+        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "50px" }}>
+          {filters.map((f) => (
+            <button
               key={f}
               onClick={() => setActive(f)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
               style={{
-                background: active === f ? 'var(--gold)' : 'transparent',
-                border: `1px solid ${active === f ? 'var(--gold)' : 'rgba(201,168,76,0.2)'}`,
-                color: active === f ? 'var(--bg)' : 'var(--text-dim)',
-                padding: '8px 16px',
-                fontFamily: 'var(--font-body)',
-                fontSize: '10px',
-                letterSpacing: '1.5px',
-                textTransform: 'uppercase',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
+                padding: "8px 16px",
+                border: "1px solid var(--border)",
+                background: active === f ? "#C9A84C" : "transparent",
+                color: active === f ? "black" : "var(--text)",
+                cursor: "pointer",
+                fontSize: "12px",
+                letterSpacing: "1px",
               }}
             >
               {f}
-            </motion.button>
+            </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Projects List */}
+        {/* Projects */}
         <div>
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filtered.map((project, i) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: i * 0.1 }}
                 onMouseEnter={() => setHovered(project.id)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
-                  borderTop: '1px solid var(--border)',
-                  padding: 'clamp(24px, 8vw, 40px) 0',
-                  display: 'grid',
-                  gridTemplateColumns: 'clamp(50px, 12vw, 80px) 1fr auto',
-                  gap: 'clamp(16px, 5vw, 32px)',
-                  alignItems: 'flex-start',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  borderTop: "1px solid var(--border)",
+                  padding: "30px 0",
+                  display: "grid",
+                  gridTemplateColumns: "70px 1fr auto",
+                  gap: "30px",
+                  alignItems: "center",
                 }}
               >
-                {/* Hover background */}
-                <motion.div
-                  animate={{ opacity: hovered === project.id ? 1 : 0 }}
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: `linear-gradient(90deg, ${project.color}08, transparent)`,
-                    borderLeft: `2px solid ${project.color}`,
-                    pointerEvents: 'none',
-                  }}
-                />
-
                 {/* Number */}
-                <motion.div
-                  animate={{ color: hovered === project.id ? project.color : 'var(--text-muted)' }}
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '36px',
-                    fontWeight: 600,
-                    lineHeight: 1,
-                  }}
-                >
+                <div style={{ fontSize: "26px", color: "var(--text-muted)" }}>
                   {project.number}
-                </motion.div>
+                </div>
 
                 {/* Content */}
                 <div>
-                  <motion.h3
-                    animate={{ x: hovered === project.id ? 8 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(22px, 3vw, 34px)',
-                      fontWeight: 500,
-                      color: 'var(--text)',
-                      marginBottom: '10px',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {project.title}
-                  </motion.h3>
+<div style={{ marginBottom: "10px" }}>
+                      <motion.h3
+                      animate={{ x: hovered === project.id ? 8 : 0 }}
+                      style={{ fontSize: "26px", fontWeight: "500" }}
+                    >
+                      {project.title}
+                    </motion.h3>
+                  </div>
 
-                  <motion.p
-                    animate={{ opacity: hovered === project.id ? 1 : 0, y: hovered === project.id ? 0 : -8 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      fontSize: '14px',
-                      color: 'var(--text-dim)',
-                      lineHeight: 1.7,
-                      maxWidth: '600px',
-                      marginBottom: '16px',
-                      fontFamily: 'var(--font-body)',
-                    }}
-                  >
+                  <p style={{ color: "var(--text-dim)", marginBottom: "12px", maxWidth: "600px" }}>
                     {project.description}
-                  </motion.p>
+                  </p>
 
-                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                    {project.tags.map(tag => (
-                      <span key={tag} style={{
-                        fontSize: '11px',
-                        color: 'var(--text-dim)',
-                        background: 'var(--bg-3)',
-                        border: '1px solid var(--border)',
-                        padding: '3px 10px',
-                        letterSpacing: '1px',
-                        fontFamily: 'var(--font-body)',
-                      }}>{tag}</span>
+                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          fontSize: "11px",
+                          border: "1px solid var(--border)",
+                          padding: "4px 10px",
+                        }}
+                      >
+                        {tag}
+                      </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Right meta */}
-                <div style={{ 
-                  textAlign: 'right', 
-                  minWidth: 'auto',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}>
-                  <div style={{ fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '2px', fontFamily: 'var(--font-body)' }}>
+                {/* Right Meta */}
+                <div style={{ textAlign: "right" }}>
+                  <div style={{ fontSize: "12px", marginBottom: "6px" }}>
                     {project.year}
                   </div>
-                  <div style={{
-                    fontSize: '11px',
-                    color: project.color,
-                    letterSpacing: '2px',
-                    textTransform: 'uppercase',
-                    fontFamily: 'var(--font-body)',
-                  }}>
+
+                  <div style={{ fontSize: "12px", color: "#C9A84C" }}>
                     {project.category}
                   </div>
-                  <motion.div
-                    animate={{
-                      x: hovered === project.id ? 0 : 8,
-                      opacity: hovered === project.id ? 1 : 0,
-                    }}
-                    style={{
-                      fontSize: '20px',
-                      color: project.color,
-                      marginTop: '8px',
-                    }}
-                  >
-                    →
-                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
-          {/* Bottom border */}
-          <div style={{ borderTop: '1px solid var(--border)' }} />
+
+          <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          #works > div > div > div:nth-child(3) > div {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
-          }
-          
-          #works > div > div > div:nth-child(3) > div > div:nth-child(1) {
-            display: none;
-          }
-          
-          #works > div > div > div:nth-child(3) > div > div:last-child {
-            grid-column: 1;
-            text-align: left;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            min-width: 100%;
-          }
-          
-          #works > div > div > div:nth-child(3) > div > div:last-child > div {
-            flex: 1;
-            min-width: 100px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          #works {
-            padding: 80px 0 !important;
-          }
-          
-          #works > div > div:first-child h2 {
-            font-size: clamp(28px, 6vw, 40px) !important;
-          }
-          
-          #works > div > div:nth-child(2) {
-            margin-bottom: 40px !important;
-            gap: 6px !important;
-          }
-          
-          #works > div > div:nth-child(3) > div {
-            padding: 20px 0 !important;
-          }
-        }
-      `}</style>
     </section>
-  )
+  );
 }
