@@ -151,9 +151,11 @@ export default function About() {
                 color: 'var(--text-dim)',
                 marginBottom: '24px',
               }}>
-                I'm a passionate full-stack developer and UI/UX designer based in Pakistan, 
-                with over 5 years of experience crafting digital experiences that are both 
-                beautiful and functional.
+                I'm a passionate MERN Stack Developer based in Pakistan with over 5 years of experience building modern, scalable, and high-performance web applications. I specialize in creating full-stack solutions using MongoDB, Express.js, React.js, and Node.js.
+
+My approach combines clean code, modern design, and strong problem-solving skills to deliver applications that are not only powerful but also user-friendly. From developing responsive frontends to building secure and efficient backend systems, I focus on creating products that provide real value.
+
+I believe great web applications are built where technology meets creativity. Every line of code and every interface element matters, and my goal is to craft digital experiences that are fast, intuitive, and impactful.
               </p>
               <p style={{
                 fontFamily: 'var(--font-body)',

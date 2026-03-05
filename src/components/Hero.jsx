@@ -87,7 +87,7 @@ export default function Hero() {
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: 'var(--gold)',
-            }}>Creative Developer & Designer</span>
+            }}>MERN Stack Developer</span>
           </motion.div>
 
           {/* Main heading */}
@@ -143,8 +143,9 @@ export default function Hero() {
               marginBottom: '56px',
             }}
           >
-            I craft immersive digital experiences that blend artistry with technology — 
-            designing interfaces that breathe, move, and leave a lasting impression.
+           I am a professional MERN Stack Developer & WordPress Expert dedicated to building high-performance, scalable, and conversion-focused websites for startups and businesses.
+
+In today’s competitive digital world, your website is more than just a presence — it’s your brand identity, sales machine, and growth engine. I help founders and businesses transform their ideas into powerful, user-friendly web applications that deliver real results.
           </motion.p>
 
           {/* CTA Buttons */}

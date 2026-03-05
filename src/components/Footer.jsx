@@ -4,6 +4,13 @@ export default function Footer() {
   const year = new Date().getFullYear()
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
+  // ─── Social Links ─────────────────────────────
+  const socialLinks = [
+  { name: 'GITHUB', url: 'https://github.com/hassannoor230' },
+  { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/hassan-noor-509794325/' },
+  { name: 'INSTAGRAM', url: 'https://instagram.com/rana_hassannoor' },
+]
+
   return (
     <footer style={{
       background: 'var(--bg)',
@@ -30,7 +37,7 @@ export default function Footer() {
               marginBottom: '8px',
             }}>Hassan Noor</div>
             <p style={{ fontSize: '12px', color: 'var(--text-dim)', letterSpacing: '1px', fontFamily: 'var(--font-body)' }}>
-              Creative Developer & Designer
+              MERN STACK DEVELOPER 
             </p>
           </div>
 
@@ -61,10 +68,12 @@ export default function Footer() {
 
           {/* Socials */}
           <div style={{ display: 'flex', gap: '16px' }}>
-            {['GitHub', 'LinkedIn', 'Twitter'].map(s => (
+            {socialLinks.map(link => (
               <motion.a
-                key={s}
-                href="#"
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ color: 'var(--gold)', scale: 1.05 }}
                 style={{
                   fontSize: '11px',
@@ -76,7 +85,7 @@ export default function Footer() {
                   transition: 'color 0.2s',
                 }}
               >
-                {s}
+                {link.name}
               </motion.a>
             ))}
           </div>

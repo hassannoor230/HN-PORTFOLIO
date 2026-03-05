@@ -3,20 +3,22 @@ import { motion, useInView } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 
 // ─── EmailJS Config ───────────────────────────────────────────
-// Replace these with your actual EmailJS credentials
-// Sign up at https://www.emailjs.com and:
-// 1. Create a service (Gmail) → get SERVICE_ID
-// 2. Create an email template → get TEMPLATE_ID
-// 3. Get your PUBLIC_KEY from Account > API Keys
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID = 'service_h62545q'
+const EMAILJS_TEMPLATE_ID = 'template_89n47xm'
+const EMAILJS_PUBLIC_KEY = 'pMstZyz5dgvhLrVwF'
 // ─────────────────────────────────────────────────────────────
 
 const contactInfo = [
   { label: 'Email', value: 'hassannoor2309@gmail.com', href: 'mailto:hassannoor2309@gmail.com' },
   { label: 'Location', value: 'Pakistan', href: null },
   { label: 'Availability', value: 'Open to Work', href: null },
+]
+
+// ─── Social Links ───────────────────────────────────────────
+const socialLinks = [
+  { name: 'GITHUB', url: 'https://github.com/hassannoor230' },
+  { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/hassan-noor-509794325/' },
+  { name: 'INSTAGRAM', url: 'https://instagram.com/rana_hassannoor' },
 ]
 
 export default function Contact() {
@@ -188,10 +190,12 @@ export default function Contact() {
                 Follow Me
               </p>
               <div style={{ display: 'flex', gap: '20px' }}>
-                {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map(social => (
+                {socialLinks.map(link => (
                   <motion.a
-                    key={social}
-                    href="#"
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ color: 'var(--gold)', y: -2 }}
                     style={{
                       fontFamily: 'var(--font-body)',
@@ -203,7 +207,7 @@ export default function Contact() {
                       transition: 'color 0.2s',
                     }}
                   >
-                    {social}
+                    {link.name}
                   </motion.a>
                 ))}
               </div>
