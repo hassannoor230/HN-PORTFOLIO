@@ -1,11 +1,17 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import eCommerceImg from "../projects/e-commerce.png";
+import socialImg from "../projects/social.png";
+import dashboardImg from "../projects/dashboard.png";
+import designImg from "../projects/design.png";
+import cryptoImg from "../projects/crypto.png";
+import healthImg from "../projects/health.png";
 
 const projects = [
   {
     id: 1,
     title: "E-Commerce Website",
-    image: "src/projects/e-commerce.png",
+    image: eCommerceImg,
     category: "Full Stack",
     tags: ["React", "Node.js", "MongoDB", "Express.js", "MERN Stack"],
     year: "2024",
@@ -16,7 +22,7 @@ const projects = [
   {
     id: 2,
     title: "Social Media Application",
-    image: "src/projects/social.png",
+    image: socialImg,
     category: "Full Stack",
     tags: ["React", "Firebase", "Redux", "Authentication", "Real-time Chat"],
     year: "2024",
@@ -27,7 +33,7 @@ const projects = [
   {
     id: 3,
     title: "SaaS Admin Dashboard",
-    image: "src/projects/dashboard.png",
+    image: dashboardImg,
     category: "Frontend",
     tags: ["React", "Tailwind CSS", "Charts.js", "Data Visualization", "TypeScript"],
     year: "2023",
@@ -38,7 +44,7 @@ const projects = [
   {
     id: 4,
     title: "UI/UX Brand Design",
-    image: "src/projects/design.png",
+    image: designImg,
     category: "Design",
     tags: ["Figma", "Branding", "UI/UX Design", "Prototyping", "Wireframes"],
     year: "2023",
@@ -49,7 +55,7 @@ const projects = [
   {
     id: 5,
     title: "Crypto Wallet App",
-    image: "src/projects/crypto.png",
+    image: cryptoImg,
     category: "Web3",
     tags: ["React", "Web3.js", "Solidity", "Ethereum", "DeFi Integration"],
     year: "2023",
@@ -60,7 +66,7 @@ const projects = [
   {
     id: 6,
     title: "Health Tracking App",
-    image: "src/projects/health.png",
+    image: healthImg,
     category: "Mobile",
     tags: ["Flutter", "Dart", "HealthKit", "Biometric Tracking"],
     year: "2022",
