@@ -75,19 +75,21 @@ export default function About() {
           {/* Left: Text + Avatar */}
           <div>
             <FadeIn delay={0.1}>
-              {/* Avatar placeholder */}
-              <div style={{
-                width: '100%',
-                aspectRatio: '4/5',
-                background: 'var(--bg-3)',
-                border: '1px solid var(--border)',
-                marginBottom: '48px',
-                position: 'relative',
-                overflow: 'hidden',
-              }}>
+              {/* Avatar placeholder with animated golden light moving along sides */}
+              <motion.div
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/5',
+                  background: 'var(--bg-3)',
+                  border: '1px solid var(--border)',
+                  marginBottom: '48px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
                 {/* Decorative corner */}
-                <div style={{ position: 'absolute', top: 16, left: 16, width: 40, height: 40, borderTop: '2px solid var(--gold)', borderLeft: '2px solid var(--gold)' }} />
-                <div style={{ position: 'absolute', bottom: 16, right: 16, width: 40, height: 40, borderBottom: '2px solid var(--gold)', borderRight: '2px solid var(--gold)' }} />
+                <div style={{ position: 'absolute', top: 8, left: 8, width: 40, height: 40, borderTop: '2px solid var(--gold)', borderLeft: '2px solid var(--gold)' }} />
+                <div style={{ position: 'absolute', bottom: 8, right: 8, width: 40, height: 40, borderBottom: '2px solid var(--gold)', borderRight: '2px solid var(--gold)' }} />
 
                 {/* Initials */}
                 <div style={{
@@ -106,7 +108,19 @@ export default function About() {
                     WebkitTextStroke: '1px rgba(201,168,76,0.3)',
                     lineHeight: 1,
                     userSelect: 'none',
-                  }}><img src={img} alt="Hassan Noor" style={{ width: '95%', height: '100%', margin: '3%' }} /></div>
+                    
+                  }}>
+                  <img
+                    src={img}
+                    alt="Hassan Noor"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                  />
+                </div>
                   <p style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '11px',
@@ -121,7 +135,7 @@ export default function About() {
                     letterSpacing: '2px',
                     marginTop: '4px',
                     fontFamily: 'var(--font-body)',
-                  }}>Creative Developer</p>
+                  }}>MERN STACK DEVELOPER</p>
                 </div>
 
                 {/* Animated scan line */}
@@ -137,7 +151,7 @@ export default function About() {
                     top: 0,
                   }}
                 />
-              </div>
+              </motion.div>
             </FadeIn>
           </div>
 
