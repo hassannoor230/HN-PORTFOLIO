@@ -224,43 +224,68 @@ export default function Works() {
                 background: "#111",
                 padding: "30px",
                 borderRadius: "12px",
-                maxWidth: "800px",
+                maxWidth: "1000px",
                 width: "100%",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "30px",
+                alignItems: "start",
               }}
             >
-              <img
-                src={selectedProject.image}
-                alt=""
-                style={{ width: "100%", borderRadius: "10px", marginBottom: "20px" }}
-              />
-
-              <h3 style={{ fontSize: "28px", marginBottom: "10px" }}>
-                {selectedProject.title}
-              </h3>
-
-              <p style={{ color: "#aaa", marginBottom: "15px" }}>
-                {selectedProject.description}
-              </p>
-
-              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "15px" }}>
-                {selectedProject.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      border: "1px solid #444",
-                      padding: "5px 12px",
-                      fontSize: "12px",
-                      borderRadius: "6px",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div>
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  style={{
+                    width: "100%",
+                    height: "300px",
+                    objectFit: "cover",
+                    borderRadius: "10px",
+                    marginBottom: "20px"
+                  }}
+                />
               </div>
 
-              <div style={{ fontSize: "12px", color: "#aaa" }}>
-                <strong>Category:</strong> {selectedProject.category} <br />
-                <strong>Year:</strong> {selectedProject.year}
+              <div>
+                <h3 style={{ fontSize: "32px", marginBottom: "15px", color: "#C9A84C" }}>
+                  {selectedProject.title}
+                </h3>
+
+                <p style={{ color: "#aaa", marginBottom: "20px", lineHeight: "1.6" }}>
+                  {selectedProject.description}
+                </p>
+
+                <div style={{ marginBottom: "20px" }}>
+                  <h4 style={{ fontSize: "18px", marginBottom: "10px", color: "#fff" }}>Technologies Used:</h4>
+                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                    {selectedProject.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          border: "1px solid #444",
+                          padding: "6px 14px",
+                          fontSize: "14px",
+                          borderRadius: "6px",
+                          background: "#222",
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ fontSize: "16px", color: "#aaa" }}>
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong style={{ color: "#C9A84C" }}>Category:</strong> {selectedProject.category}
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong style={{ color: "#C9A84C" }}>Year:</strong> {selectedProject.year}
+                  </div>
+                  <div>
+                    <strong style={{ color: "#C9A84C" }}>Project Number:</strong> {selectedProject.number}
+                  </div>
+                </div>
               </div>
             </motion.div>
           </motion.div>
