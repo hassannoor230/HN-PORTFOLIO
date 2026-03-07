@@ -103,35 +103,29 @@ export default function Works() {
           transition={{ duration: 0.7 }}
           style={{ marginBottom: "60px" }}
         >
-          <h2 style={{ fontSize: "48px", fontWeight: "600", marginBottom: "10px" }}>
+          <h2 className="works-title">
             Featured Projects
           </h2>
-          <p style={{ color: "var(--text-dim)", maxWidth: "500px" }}>
+
+          <p className="works-desc">
             A selection of my best projects demonstrating full stack development and modern UI design.
           </p>
         </motion.div>
 
         {/* Filters */}
-        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "50px" }}>
+        <div className="works-filters">
           {filters.map((f) => (
             <button
               key={f}
               onClick={() => setActive(f)}
-              style={{
-                padding: "8px 16px",
-                border: "1px solid var(--border)",
-                background: active === f ? "#C9A84C" : "transparent",
-                color: active === f ? "black" : "var(--text)",
-                cursor: "pointer",
-                fontSize: "12px",
-              }}
+              className={`filter-btn ${active === f ? "active" : ""}`}
             >
               {f}
             </button>
           ))}
         </div>
 
-        {/* Projects List */}
+        {/* Projects */}
         <AnimatePresence>
           {filtered.map((project, i) => (
             <motion.div
@@ -142,58 +136,53 @@ export default function Works() {
               transition={{ delay: i * 0.1 }}
               onMouseEnter={() => setHovered(project.id)}
               onMouseLeave={() => setHovered(null)}
-              style={{
-                borderTop: "1px solid var(--border)",
-                padding: "30px 0",
-                display: "grid",
-                gridTemplateColumns: "70px 1fr auto",
-                gap: "30px",
-                alignItems: "center",
-              }}
+              className="project-row"
             >
-              <div style={{ fontSize: "26px", color: "var(--text-muted)" }}>
+
+              <div className="project-number">
                 {project.number}
               </div>
 
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "10px" }}>
+
+                <div className="project-header">
+
                   <img
                     src={project.image}
                     alt={project.title}
                     onClick={() => setSelectedProject(project)}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      objectFit: "cover",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                    }}
+                    className="project-thumb"
                   />
+
                   <motion.h3
                     animate={{ x: hovered === project.id ? 8 : 0 }}
-                    style={{ fontSize: "26px", fontWeight: "500" }}
+                    className="project-title"
                   >
                     {project.title}
                   </motion.h3>
+
                 </div>
 
-                <p style={{ color: "var(--text-dim)", marginBottom: "12px" }}>
+                <p className="project-desc">
                   {project.description}
                 </p>
+
               </div>
 
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: "12px" }}>{project.year}</div>
-                <div style={{ fontSize: "12px", color: "#C9A84C" }}>
+              <div className="project-meta">
+                <div>{project.year}</div>
+                <div className="project-category">
                   {project.category}
                 </div>
               </div>
+
             </motion.div>
           ))}
         </AnimatePresence>
+
       </div>
 
-      {/* POPUP MODAL */}
+      {/* MODAL */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -201,96 +190,253 @@ export default function Works() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "rgba(0,0,0,0.9)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 9999,
-              padding: "20px",
-            }}
+            className="modal-overlay"
           >
             <motion.div
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
               onClick={(e) => e.stopPropagation()}
-              style={{
-                background: "#111",
-                padding: "30px",
-                borderRadius: "12px",
-                maxWidth: "1000px",
-                width: "100%",
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "30px",
-                alignItems: "start",
-              }}
+              className="modal-content"
             >
+
               <div>
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  style={{
-                    width: "100%",
-                    height: "300px",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                    marginBottom: "20px"
-                  }}
+                  className="modal-image"
                 />
               </div>
 
               <div>
-                <h3 style={{ fontSize: "32px", marginBottom: "15px", color: "#C9A84C" }}>
+
+                <h3 className="modal-title">
                   {selectedProject.title}
                 </h3>
 
-                <p style={{ color: "#aaa", marginBottom: "20px", lineHeight: "1.6" }}>
+                <p className="modal-desc">
                   {selectedProject.description}
                 </p>
 
                 <div style={{ marginBottom: "20px" }}>
-                  <h4 style={{ fontSize: "18px", marginBottom: "10px", color: "#fff" }}>Technologies Used:</h4>
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  <h4 style={{ marginBottom: "10px" }}>Technologies Used:</h4>
+
+                  <div className="modal-tags">
                     {selectedProject.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          border: "1px solid #444",
-                          padding: "6px 14px",
-                          fontSize: "14px",
-                          borderRadius: "6px",
-                          background: "#222",
-                        }}
-                      >
+                      <span key={tag} className="tag">
                         {tag}
                       </span>
                     ))}
                   </div>
+
                 </div>
 
-                <div style={{ fontSize: "16px", color: "#aaa" }}>
-                  <div style={{ marginBottom: "10px" }}>
-                    <strong style={{ color: "#C9A84C" }}>Category:</strong> {selectedProject.category}
-                  </div>
-                  <div style={{ marginBottom: "10px" }}>
-                    <strong style={{ color: "#C9A84C" }}>Year:</strong> {selectedProject.year}
-                  </div>
-                  <div>
-                    <strong style={{ color: "#C9A84C" }}>Project Number:</strong> {selectedProject.number}
-                  </div>
+                <div className="modal-meta">
+                  <div><strong>Category:</strong> {selectedProject.category}</div>
+                  <div><strong>Year:</strong> {selectedProject.year}</div>
+                  <div><strong>Project Number:</strong> {selectedProject.number}</div>
                 </div>
+
               </div>
+
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+<style>{`
+
+/* typography */
+
+.works-title{
+font-size:clamp(32px,5vw,48px);
+font-weight:600;
+margin-bottom:10px;
+}
+
+.works-desc{
+color:var(--text-dim);
+max-width:500px;
+}
+
+
+/* filters */
+
+.works-filters{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:50px;
+}
+
+.filter-btn{
+padding:10px 18px;
+border:1px solid var(--border);
+background:transparent;
+color:var(--text);
+cursor:pointer;
+font-size:12px;
+transition:0.3s;
+}
+
+.filter-btn.active{
+background:#C9A84C;
+color:black;
+}
+
+
+/* project row */
+
+.project-row{
+border-top:1px solid var(--border);
+padding:30px 0;
+display:grid;
+grid-template-columns:70px 1fr auto;
+gap:30px;
+align-items:center;
+}
+
+.project-number{
+font-size:26px;
+color:var(--text-muted);
+}
+
+.project-header{
+display:flex;
+align-items:center;
+gap:16px;
+margin-bottom:10px;
+}
+
+.project-thumb{
+width:70px;
+height:70px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
+}
+
+.project-title{
+font-size:26px;
+font-weight:500;
+}
+
+.project-desc{
+color:var(--text-dim);
+}
+
+.project-meta{
+text-align:right;
+font-size:12px;
+}
+
+.project-category{
+color:#C9A84C;
+}
+
+
+/* modal */
+
+.modal-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.modal-content{
+background:#111;
+padding:30px;
+border-radius:12px;
+max-width:1000px;
+width:100%;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.modal-image{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.modal-title{
+font-size:32px;
+margin-bottom:15px;
+color:#C9A84C;
+}
+
+.modal-desc{
+color:#aaa;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.modal-tags{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.tag{
+border:1px solid #444;
+padding:6px 14px;
+font-size:14px;
+border-radius:6px;
+background:#222;
+}
+
+.modal-meta{
+color:#aaa;
+font-size:16px;
+display:grid;
+gap:10px;
+}
+
+
+/* responsive */
+
+@media(max-width:900px){
+
+.project-row{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+.project-meta{
+text-align:left;
+}
+
+}
+
+@media(max-width:768px){
+
+.modal-content{
+grid-template-columns:1fr;
+}
+
+.modal-image{
+height:240px;
+}
+
+.works-filters{
+overflow-x:auto;
+flex-wrap:nowrap;
+}
+
+}
+
+`}</style>
+
     </section>
   );
 }

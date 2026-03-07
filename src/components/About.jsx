@@ -77,6 +77,7 @@ export default function About() {
             <FadeIn delay={0.1}>
               {/* Avatar placeholder with animated golden light moving along sides */}
               <motion.div
+                className="avatar-container"
                 style={{
                   width: '100%',
                   aspectRatio: '4/5',
@@ -91,49 +92,43 @@ export default function About() {
                 <div style={{ position: 'absolute', top: 8, left: 8, width: 40, height: 40, borderTop: '2px solid var(--gold)', borderLeft: '2px solid var(--gold)' }} />
                 <div style={{ position: 'absolute', bottom: 8, right: 8, width: 40, height: 40, borderBottom: '2px solid var(--gold)', borderRight: '2px solid var(--gold)' }} />
 
-                {/* Initials */}
-                <div style={{
+                {/* Image */}
+                <img
+                  src={img}
+                  alt="Hassan Noor"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center top',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                />
+                {/* Text overlay - hidden on mobile */}
+                <div className="avatar-text-overlay" style={{
                   position: 'absolute',
                   inset: 0,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-end',
+                  zIndex: 2,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
                 }}>
-                  <div style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '120px',
-                    fontWeight: 600,
-                    color: 'transparent',
-                    WebkitTextStroke: '1px rgba(201,168,76,0.3)',
-                    lineHeight: 1,
-                    userSelect: 'none',
-                    
-                  }}>
-                  <img
-                    src={img}
-                    alt="Hassan Noor"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'center',
-                    }}
-                  />
-                </div>
                   <p style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '11px',
                     letterSpacing: '4px',
                     textTransform: 'uppercase',
                     color: 'var(--text-dim)',
-                    marginTop: '14px',
+                    marginBottom: '8px',
                   }}>Hassan Noor</p>
                   <p style={{
                     fontSize: '11px',
                     color: 'var(--gold)',
                     letterSpacing: '2px',
-                    marginTop: '4px',
+                    marginBottom: '14px',
                     fontFamily: 'var(--font-body)',
                   }}>MERN STACK DEVELOPER</p>
                 </div>
@@ -287,7 +282,21 @@ I believe great web applications are built where technology meets creativity. Ev
       </div>
 
       <style>{`
+        .avatar-container {
+          width: 100%;
+        }
+        .avatar-text-overlay {
+          display: flex !important;
+        }
         @media (max-width: 768px) {
+          .avatar-container {
+            width: 250px;
+            margin: 0 auto;
+            max-height: 350px;
+          }
+          .avatar-text-overlay {
+            display: none !important;
+          }
           #about .container > div:last-child {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
