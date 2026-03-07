@@ -14,7 +14,6 @@ const contactInfo = [
   { label: 'Availability', value: 'Open to Work', href: null },
 ]
 
-// ─── Social Links ───────────────────────────────────────────
 const socialLinks = [
   { name: 'GITHUB', url: 'https://github.com/hassannoor230' },
   { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/hassan-noor-509794325/' },
@@ -323,7 +322,6 @@ export default function Contact() {
                 ) : 'Send Message →'}
               </motion.button>
 
-              {/* Status messages */}
               {status === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -364,16 +362,41 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* ─── Responsive CSS ─── */}
       <style>{`
-        @media (max-width: 768px) {
-          #contact .container > div:last-child {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-          }
-          #contact form > div:first-child {
-            grid-template-columns: 1fr !important;
-          }
+
+        /* Large screens */
+        @media (max-width: 1200px){
+          #contact { padding:120px 20px !important; }
+          #contact .container { padding:0 20px; }
+          #contact > div:nth-child(2){ font-size:140px !important; right:-10px !important; }
         }
+
+        /* Tablet */
+        @media (max-width: 992px){
+          #contact { padding:100px 20px !important; }
+          #contact .container > div:last-child{ grid-template-columns:1fr !important; gap:60px !important; }
+          #contact > div:nth-child(2){ font-size:120px !important; right:-10px !important; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px){
+          #contact { padding:90px 16px !important; }
+          #contact .container{ padding:0 10px; }
+          #contact .container > div:last-child{ grid-template-columns:1fr !important; gap:48px !important; }
+          #contact form > div:first-child{ grid-template-columns:1fr !important; }
+          #contact textarea{ min-height:140px !important; }
+          #contact > div:nth-child(2){ font-size:90px !important; bottom:20px !important; right:-10px !important; }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px){
+          #contact{ padding:80px 14px !important; }
+          #contact h2{ font-size:32px !important; }
+          #contact > div:nth-child(2){ display:none; }
+          #contact button{ padding:16px 20px !important; font-size:11px !important; }
+        }
+
       `}</style>
     </section>
   )
