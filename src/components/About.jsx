@@ -10,10 +10,10 @@ const skills = [
 ];
 
 const timeline = [
-  { year: "2024", title: "Senior Frontend Developer", company: "Tech Studio Pro" },
-  { year: "2022", title: "Full Stack Developer", company: "Digital Agency Co." },
-  { year: "2020", title: "Junior Developer", company: "StartUp Labs" },
-  { year: "2019", title: "BS Computer Science", company: "University of Lahore" },
+  { year: "2022", title: "Junior Developer", company: "StartUp" },
+  { year: "2023", title: "Senior Frontend Developer", company: "Techno Sphere" },
+  { year: "2024", title: "Full Stack Developer", company: "Techno Sphere" },
+  { year: "2024", title: "BB Information Technology", company: "Virtual University of Pakistan" },
 ];
 
 function FadeIn({ children, delay = 0, y = 30 }) {
@@ -75,7 +75,7 @@ export default function About() {
 
             <FadeIn delay={0.3}>
               <p className="about-text">
-                I'm a passionate MERN Stack Developer based in Pakistan with over 5 years of
+                I'm a passionate MERN Stack Developer based in Pakistan with over 2 years of
                 experience building modern scalable web applications.
               </p>
 
